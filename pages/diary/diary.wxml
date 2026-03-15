@@ -1,0 +1,70 @@
+<view class="container">
+  <view class="diary-header">
+    <view class="date">{{currentDate}}</view>
+    <view class="weekday">{{weekday}}</view>
+    <view class="weather">🌤️ 晴朗</view>
+  </view>
+
+  <view class="diary-content" wx:if="{{diaryGenerated}}">
+    <view class="diary-title">今日日记</view>
+    
+    <!-- 日记正文 -->
+    <view class="diary-text">
+      <view class="section">
+        <view class="section-icon">💡</view>
+        <view class="section-content">
+          <view class="section-title">灵感闪现</view>
+          <view class="section-text">{{diaryContent.inspirations}}</view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section-icon">📅</view>
+        <view class="section-content">
+          <view class="section-title">今日事件</view>
+          <view class="section-text">{{diaryContent.events}}</view>
+        </view>
+      </view>
+
+      <view class="section">
+        <view class="section-icon">📖</view>
+        <view class="section-content">
+          <view class="section-title">读书感悟</view>
+          <view class="section-text">{{diaryContent.thoughts}}</view>
+        </view>
+      </view>
+
+      <view class="summary">
+        <view class="summary-title">✨ 今日总结</view>
+        <view class="summary-text">{{diaryContent.summary}}</view>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons">
+      <view class="action-btn copy-btn" bindtap="copyDiary">
+        <text class="btn-icon">📋</text>
+        <text>复制日记</text>
+      </view>
+      <view class="action-btn share-btn" bindtap="shareDiary">
+        <text class="btn-icon">📤</text>
+        <text>分享</text>
+      </view>
+      <view class="action-btn save-btn" bindtap="saveDiary">
+        <text class="btn-icon">💾</text>
+        <text>保存</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 生成中状态 -->
+  <view class="generating-state" wx:else>
+    <view class="loading-animation">
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+      <view class="loading-dot"></view>
+    </view>
+    <view class="loading-text">正在生成你的专属日记...</view>
+    <view class="loading-tip">AI 正在整理今天的灵感、事件和感悟</view>
+  </view>
+</view>

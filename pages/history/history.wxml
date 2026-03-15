@@ -1,0 +1,92 @@
+<view class="container">
+  <view class="calendar-header">
+    <view class="month-selector">
+      <text class="arrow" bindtap="prevMonth">‹</text>
+      <text class="month-title">{{currentYear}}年{{currentMonth}}月</text>
+      <text class="arrow" bindtap="nextMonth">›</text>
+    </view>
+  </view>
+
+  <!-- 星期标题 -->
+  <view class="weekdays">
+    <view class="weekday">日</view>
+    <view class="weekday">一</view>
+    <view class="weekday">二</view>
+    <view class="weekday">三</view>
+    <view class="weekday">四</view>
+    <view class="weekday">五</view>
+    <view class="weekday">六</view>
+  </view>
+
+  <!-- 日历网格 -->
+  <view class="calendar-grid">
+    <view 
+      class="day-cell {{item.isCurrentMonth ? '' : 'other-month'}} {{item.hasRecord ? 'has-record' : ''}} {{item.isToday ? 'today' : ''}}"
+      wx:for="{{calendarDays}}" 
+      wx:key="date"
+      bindtap="selectDay"
+      data-date="{{item.date}}"
+    >
+      <view class="day-number">{{item.day}}</view>
+      <view class="record-indicator" wx:if="{{item.hasRecord}}">
+        <view class="dot"></view>
+      </view>
+      <view class="record-count" wx:if="{{item.recordCount > 0}}">{{item.recordCount}}条</view>
+    </view>
+  </view>
+
+  <!-- 选中日期详情 -->
+  <view class="day-detail" wx:if="{{selectedDate}}">
+    <view class="detail-header">
+      <view class="detail-date">{{selectedDate}}</view>
+      <view class="detail-action" bindtap="goToRecord">去记录</view>
+    </view>
+    
+    <view class="detail-content" wx:if="{{dayEntries.length > 0}}">
+      <view class="entry-item" wx:for="{{dayEntries}}" wx:key="id">
+        <view class="entry-icon {{item.type}}">
+          <text wx:if="{{item.type === 'inspiration'}}">💡</text>
+          <text wx:elif="{{item.type === 'event'}}">📅</text>
+          <text wx:else>📖</text>
+        </view>
+        <view class="entry-info">
+          <view class="entry-time">{{item.time}}</view>
+          <view class="entry-text">{{item.content}}</view>
+        </view>
+      </view>
+      
+      <view class="view-diary-btn" bindtap="viewDiary">
+        查看当日日记
+      </view>
+    </view>
+    
+    <view class="empty-day" wx:else>
+      <view class="empty-icon">📝</view>
+      <view class="empty-text">这天还没有记录</view>
+      <view class="empty-hint">点击"去记录"添加内容</view>
+    </view>
+  </view>
+
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="stats-title">本月统计</view>
+    <view class="stats-grid">
+      <view class="stat-card">
+        <view class="stat-value">{{monthStats.total}}</view>
+        <view class="stat-label">总记录数</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{monthStats.inspirations}}</view>
+        <view class="stat-label">灵感</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{monthStats.events}}</view>
+        <view class="stat-label">事件</view>
+      </view>
+      <view class="stat-card">
+        <view class="stat-value">{{monthStats.thoughts}}</view>
+        <view class="stat-label">感悟</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,262 @@
+.calendar-header {
+  background: white;
+  padding: 30rpx;
+  border-radius: 20rpx;
+  margin: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.month-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow {
+  font-size: 48rpx;
+  color: #667eea;
+  padding: 10rpx 20rpx;
+}
+
+.month-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+  padding: 20rpx 20rpx;
+  background: white;
+  margin: 0 20rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.weekday {
+  width: 80rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10rpx;
+  padding: 20rpx;
+  background: white;
+  margin: 0 20rpx 20rpx;
+  border-radius: 20rpx;
+}
+
+.day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15rpx;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.day-cell.other-month {
+  opacity: 0.3;
+}
+
+.day-cell.has-record {
+  background: #f0f7ff;
+}
+
+.day-cell.today {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.day-cell.today .day-number {
+  color: white;
+}
+
+.day-number {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.record-indicator {
+  position: absolute;
+  bottom: 10rpx;
+}
+
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #667eea;
+}
+
+.record-count {
+  position: absolute;
+  bottom: 8rpx;
+  font-size: 20rpx;
+  color: #667eea;
+}
+
+.day-detail {
+  background: white;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.detail-date {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.detail-action {
+  padding: 15rpx 30rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 25rpx;
+  font-size: 26rpx;
+}
+
+.detail-content {
+  max-height: 600rpx;
+  overflow-y: auto;
+}
+
+.entry-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.entry-item:last-child {
+  border-bottom: none;
+}
+
+.entry-icon {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+  font-size: 28rpx;
+}
+
+.entry-icon.inspiration {
+  background: #fff3e0;
+}
+
+.entry-icon.event {
+  background: #e3f2fd;
+}
+
+.entry-icon.thought {
+  background: #f3e5f5;
+}
+
+.entry-info {
+  flex: 1;
+}
+
+.entry-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.entry-text {
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.view-diary-btn {
+  margin-top: 30rpx;
+  padding: 25rpx;
+  background: #f5f7fa;
+  color: #667eea;
+  text-align: center;
+  border-radius: 15rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.empty-day {
+  text-align: center;
+  padding: 60rpx 20rpx;
+}
+
+.empty-icon {
+  font-size: 80rpx;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.empty-hint {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.stats-section {
+  background: white;
+  margin: 20rpx;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.stats-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 25rpx;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20rpx;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 25rpx 15rpx;
+  background: #f8f9fa;
+  border-radius: 15rpx;
+}
+
+.stat-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #667eea;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999;
+}
