@@ -1,0 +1,93 @@
+<view class="container">
+  <view class="form-card">
+    <view class="form-title">记录此刻</view>
+    
+    <!-- 类型选择 -->
+    <view class="form-group">
+      <view class="label">记录类型</view>
+      <view class="type-selector">
+        <view 
+          class="type-item {{selectedType === 'inspiration' ? 'active' : ''}}" 
+          bindtap="selectType" 
+          data-type="inspiration"
+        >
+          <view class="type-icon">💡</view>
+          <view class="type-name">灵感</view>
+        </view>
+        <view 
+          class="type-item {{selectedType === 'event' ? 'active' : ''}}" 
+          bindtap="selectType" 
+          data-type="event"
+        >
+          <view class="type-icon">📅</view>
+          <view class="type-name">事件</view>
+        </view>
+        <view 
+          class="type-item {{selectedType === 'thought' ? 'active' : ''}}" 
+          bindtap="selectType" 
+          data-type="thought"
+        >
+          <view class="type-icon">📖</view>
+          <view class="type-name">感悟</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 内容输入 -->
+    <view class="form-group">
+      <view class="label">内容</view>
+      <textarea 
+        class="content-input" 
+        placeholder="请输入你的想法、事件或感悟..." 
+        value="{{content}}"
+        bindinput="onContentInput"
+        maxlength="1000"
+        auto-height
+      />
+      <view class="char-count">{{contentLength}}/1000</view>
+    </view>
+
+    <!-- 标签输入 -->
+    <view class="form-group">
+      <view class="label">标签（可选）</view>
+      <view class="tag-input-container">
+        <input 
+          class="tag-input" 
+          placeholder="输入标签后按回车" 
+          value="{{currentTag}}"
+          bindinput="onTagInput"
+          bindconfirm="addTag"
+        />
+      </view>
+      <view class="tags-list" wx:if="{{tags.length > 0}}">
+        <view class="tag-item" wx:for="{{tags}}" wx:key="*this">
+          {{item}}
+          <text class="tag-remove" bindtap="removeTag" data-index="{{index}}">×</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-btn" bindtap="submitEntry">
+      保存记录
+    </view>
+  </view>
+
+  <!-- 今日记录预览 -->
+  <view class="preview-section" wx:if="{{todayCount > 0}}">
+    <view class="section-title">今日已记录 {{todayCount}} 条</view>
+    <view class="preview-list">
+      <view class="preview-item" wx:for="{{recentEntries}}" wx:key="id">
+        <view class="preview-icon {{item.type}}">
+          <text wx:if="{{item.type === 'inspiration'}}">💡</text>
+          <text wx:elif="{{item.type === 'event'}}">📅</text>
+          <text wx:else>📖</text>
+        </view>
+        <view class="preview-content">
+          <view class="preview-text">{{item.content}}</view>
+          <view class="preview-time">{{item.time}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
